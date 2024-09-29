@@ -1,0 +1,32 @@
+tasks = {}
+
+def add_task(task):
+    task_id = len(tasks) + 1
+    tasks[task_id] = [task, False]
+
+def update_task(task_id, new_task):
+    if task_id in tasks:
+        tasks[task_id][0] = new_task
+
+def mark_done(task_id):
+    if task_id in tasks:
+        tasks[task_id][1] = True
+
+def show_tasks():
+    for tid, (task, done) in tasks.items():
+        status = "Done" if done else "Pending"
+        print(f"{tid}. {task} [{status}]")
+
+while True:
+    choice = input("\n1. Add\n2. Update\n3. Mark Done\n4. Show\n5. Exit\nChoose: ")
+    
+    if choice == '1':
+        add_task(input("Enter task: "))
+    elif choice == '2':
+        update_task(int(input("Task ID: ")), input("Updated task: "))
+    elif choice == '3':
+        mark_done(int(input("Task ID: ")))
+    elif choice == '4':
+        show_tasks()
+    elif choice == '5':
+        break
